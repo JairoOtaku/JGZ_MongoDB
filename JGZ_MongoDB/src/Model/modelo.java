@@ -1,15 +1,8 @@
 package Model;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import static com.mongodb.client.model.Filters.eq;
 import com.mongodb.client.result.UpdateResult;
-import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
 
@@ -27,7 +20,7 @@ public class modelo extends database {
             }
         };
 
-        String[] columNames = {"Codigo", "Nombre", "Población"};
+        String[] columNames = {"Codigo", "Nombre", "Poblaciï¿½n"};
         MongoDatabase dbm = db.databaseMongo();
         MongoCollection<Document> collection = dbm.getCollection("Clientes");
         FindIterable<Document> find = collection.find();
@@ -77,7 +70,7 @@ public class modelo extends database {
             data[i][3] = String.valueOf(doc.get("STOCK"));
             i++;
         }
-        //se añade la matriz de datos en el DefaultTableModel
+        //se aï¿½ade la matriz de datos en el DefaultTableModel
         tablemodel.setDataVector(data, columNames);
 
         return tablemodel;
@@ -92,7 +85,7 @@ public class modelo extends database {
             }
         };
 
-        String[] columNames = {"Número", "Cliente", "Artículo", "Fecha", "Unidades"};
+        String[] columNames = {"Nï¿½mero", "Cliente", "Artï¿½culo", "Fecha", "Unidades"};
 
         MongoDatabase dbm = db.databaseMongo();
         MongoCollection<Document> collection = dbm.getCollection("Ventas");
@@ -111,7 +104,7 @@ public class modelo extends database {
             data[i][4] = String.valueOf(doc.get("UNIDADES"));
             i++;
         }
-        //se añade la matriz de datos en el DefaultTableModel
+        //se aï¿½ade la matriz de datos en el DefaultTableModel
         tablemodel.setDataVector(data, columNames);
         return tablemodel;
     }
