@@ -10,12 +10,12 @@ import Model.modelo;
 // @author Jairo_Otaku
 public class Controller implements ActionListener, MouseListener {
 
-    View view;
+    View vista;
     modelo modelo;
     int filaseleccionada = -1;
 
     public Controller(View vista) {
-        this.view = vista;
+        this.vista = vista;
     }
 
     public enum AccionMVC {
@@ -69,12 +69,14 @@ public class Controller implements ActionListener, MouseListener {
         this.vista.btnEliminarVentas.addActionListener(this);
 
         this.vista.jTableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ClientesMouseClicked(evt);
             }
         });
 
         this.vista.jTableArticulos.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ArticulosMouseClicked(evt);
             }
@@ -127,7 +129,6 @@ public class Controller implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (AccionMVC.valueOf(e.getActionCommand())) {
-
             case btnAceptarClientes:
                 try {
                     String codigo = this.vista.txtCodigoClientes.getText();
@@ -138,7 +139,6 @@ public class Controller implements ActionListener, MouseListener {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
                 break;
             case btnModificarClientes:
                 try {
@@ -149,7 +149,6 @@ public class Controller implements ActionListener, MouseListener {
                     this.vista.jTableClientes.setModel(this.modelo.getTablaCliente());
                 } catch (Exception ex) {
                 }
-
                 break;
             case btnEliminarClientes:
                 try {
@@ -163,7 +162,6 @@ public class Controller implements ActionListener, MouseListener {
                 }
 
                 break;
-
             case btnAceptarArticulos:
                 try {
                     String codigo = this.vista.txtCodigoArticulos.getText();
@@ -188,7 +186,6 @@ public class Controller implements ActionListener, MouseListener {
                     ex.printStackTrace();
                 }
                 break;
-
             case btnEliminarArticulos:
                 try {
                     String codigo = this.vista.txtCodigoArticulos.getText();
@@ -198,7 +195,6 @@ public class Controller implements ActionListener, MouseListener {
                     ex.printStackTrace();
                 }
                 break;
-
             case btnAceptarVentas:
                 try {
                     String numventa = this.vista.txtNumeroVentas.getText();
@@ -238,7 +234,6 @@ public class Controller implements ActionListener, MouseListener {
     }
 
     public void ClientesMouseClicked(java.awt.event.MouseEvent evt) {
-
         filaseleccionada = this.vista.jTableClientes.getSelectedRow();
         String cod = (String) this.vista.jTableClientes.getValueAt(filaseleccionada, 0);
         String nom = (String) this.vista.jTableClientes.getValueAt(filaseleccionada, 1);
@@ -246,11 +241,9 @@ public class Controller implements ActionListener, MouseListener {
         this.vista.txtCodigoClientes.setText(cod);
         this.vista.txtNombreClientes.setText(nom);
         this.vista.txtPoblacionClientes.setText(pob);
-
     }
 
     public void ArticulosMouseClicked(java.awt.event.MouseEvent evt) {
-
         filaseleccionada = this.vista.jTableArticulos.getSelectedRow();
         String cod = (String) this.vista.jTableArticulos.getValueAt(filaseleccionada, 0);
         String den = (String) this.vista.jTableArticulos.getValueAt(filaseleccionada, 1);
@@ -263,7 +256,6 @@ public class Controller implements ActionListener, MouseListener {
     }
 
     public void VentasMouseClicked(java.awt.event.MouseEvent evt) {
-
         filaseleccionada = this.vista.jTableVentas.getSelectedRow();
         String num = (String) this.vista.jTableVentas.getValueAt(filaseleccionada, 0);
         String codCli = (String) this.vista.jTableVentas.getValueAt(filaseleccionada, 1);
@@ -275,7 +267,6 @@ public class Controller implements ActionListener, MouseListener {
         this.vista.txtArticuloVentas.setText(codArt);
         this.vista.txtFechaVentas.setText(fecha);
         this.vista.txtUnidadesVentas.setText(unid);
-
     }
 
     @Override
